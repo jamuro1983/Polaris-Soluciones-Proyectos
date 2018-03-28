@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebRegionalismos.Models.Pais>
+
+@{
+    ViewBag.Title = "Catálogo de Paises";
+}
+
+<h2>Catálogo de Paises</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Crear")
+</p>
+<table class="table">
+    <tr>
+        <th> 
+            @Html.DisplayNameFor(model => model.IdPais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionPais)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdPais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionPais)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id = item.IdPais }) |
+            @Html.ActionLink("Detalle", "Detalle", new { id = item.IdPais }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdPais })
+        </td>
+    </tr>
+}
+
+</table>
