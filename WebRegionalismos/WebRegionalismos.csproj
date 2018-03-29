@@ -189,8 +189,10 @@
     </Compile>
     <Compile Include="Models\Repositorios\RepositorioIdioma.cs" />
     <Compile Include="Models\Repositorios\RepositorioPais.cs" />
-    <Compile Include="Models\Repositorios\RepositorioPalabra.cs" />
     <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>RegionalismosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwCatalogoPalabras.cs">
       <DependentUpon>RegionalismosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

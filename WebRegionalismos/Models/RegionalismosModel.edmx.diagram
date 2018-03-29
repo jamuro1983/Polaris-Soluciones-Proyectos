@@ -15,6 +15,7 @@
         <AssociationConnector Association="dbRegionalismosModel.FK_Definicion_Palabra_IdPalabra" ManuallyRouted="false" />
         <AssociationConnector Association="dbRegionalismosModel.FK_PalabraPorPais_Pais_IdPais" ManuallyRouted="false" />
         <AssociationConnector Association="dbRegionalismosModel.FK_PalabraPorPais_Palabra_IdPalabra" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbRegionalismosModel.vwCatalogoPalabras" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

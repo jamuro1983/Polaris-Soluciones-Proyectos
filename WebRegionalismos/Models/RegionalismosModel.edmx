@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbRegionalismosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbRegionalismosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Definicion">
           <Key>
             <PropertyRef Name="IdDefinicion" />
@@ -52,6 +52,28 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vwCatalogoPalabras">
+          <Key>
+            <PropertyRef Name="DescripcionPalabra" />
+            <PropertyRef Name="DescripcionPais" />
+            <PropertyRef Name="DescripcionIdioma" />
+            <PropertyRef Name="Definicion" />
+            <PropertyRef Name="IdPalabra" />
+            <PropertyRef Name="IdIdioma" />
+            <PropertyRef Name="IdPais" />
+            <PropertyRef Name="IdDefinicion" />
+          </Key>
+          <Property Name="DescripcionPalabra" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescripcionPais" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescripcionIdioma" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Definicion" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="IdPalabra" Type="int" Nullable="false" />
+          <Property Name="IdIdioma" Type="int" Nullable="false" />
+          <Property Name="IdPais" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="IdDefinicion" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Definicion_Idioma_IdIdioma">
           <End Role="Idioma" Type="Self.Idioma" Multiplicity="1" />
@@ -108,6 +130,18 @@
           <EntitySet Name="Palabra" EntityType="Self.Palabra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PalabraPorPais" EntityType="Self.PalabraPorPais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwCatalogoPalabras" EntityType="Self.vwCatalogoPalabras" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwCatalogoPalabras].[DescripcionPalabra] AS [DescripcionPalabra], 
+    [vwCatalogoPalabras].[DescripcionPais] AS [DescripcionPais], 
+    [vwCatalogoPalabras].[DescripcionIdioma] AS [DescripcionIdioma], 
+    [vwCatalogoPalabras].[Definicion] AS [Definicion], 
+    [vwCatalogoPalabras].[IdPalabra] AS [IdPalabra], 
+    [vwCatalogoPalabras].[IdIdioma] AS [IdIdioma], 
+    [vwCatalogoPalabras].[IdPais] AS [IdPais], 
+    [vwCatalogoPalabras].[IdDefinicion] AS [IdDefinicion]
+    FROM [dbo].[vwCatalogoPalabras] AS [vwCatalogoPalabras]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Definicion_Idioma_IdIdioma" Association="Self.FK_Definicion_Idioma_IdIdioma">
             <End Role="Idioma" EntitySet="Idioma" />
             <End Role="Definicion" EntitySet="Definicion" />
@@ -125,8 +159,7 @@
             <End Role="PalabraPorPais" EntitySet="PalabraPorPais" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbRegionalismosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -257,7 +290,28 @@
             <End Role="Palabra" EntitySet="Palabra" />
             <End Role="PalabraPorPais" EntitySet="PalabraPorPais" />
           </AssociationSet>
+          <EntitySet Name="vwCatalogoPalabras" EntityType="dbRegionalismosModel.vwCatalogoPalabras" />
         </EntityContainer>
+        <EntityType Name="vwCatalogoPalabras">
+          <Key>
+            <PropertyRef Name="DescripcionPalabra" />
+            <PropertyRef Name="DescripcionPais" />
+            <PropertyRef Name="DescripcionIdioma" />
+            <PropertyRef Name="Definicion" />
+            <PropertyRef Name="IdPalabra" />
+            <PropertyRef Name="IdIdioma" />
+            <PropertyRef Name="IdPais" />
+            <PropertyRef Name="IdDefinicion" />
+          </Key>
+          <Property Name="DescripcionPalabra" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionPais" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionIdioma" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Definicion" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="IdPalabra" Type="Int32" Nullable="false" />
+          <Property Name="IdIdioma" Type="Int32" Nullable="false" />
+          <Property Name="IdPais" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="IdDefinicion" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -315,6 +369,20 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwCatalogoPalabras">
+            <EntityTypeMapping TypeName="dbRegionalismosModel.vwCatalogoPalabras">
+              <MappingFragment StoreEntitySet="vwCatalogoPalabras">
+                <ScalarProperty Name="IdDefinicion" ColumnName="IdDefinicion" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="IdIdioma" ColumnName="IdIdioma" />
+                <ScalarProperty Name="IdPalabra" ColumnName="IdPalabra" />
+                <ScalarProperty Name="Definicion" ColumnName="Definicion" />
+                <ScalarProperty Name="DescripcionIdioma" ColumnName="DescripcionIdioma" />
+                <ScalarProperty Name="DescripcionPais" ColumnName="DescripcionPais" />
+                <ScalarProperty Name="DescripcionPalabra" ColumnName="DescripcionPalabra" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
