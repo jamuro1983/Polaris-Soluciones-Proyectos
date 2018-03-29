@@ -151,7 +151,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdiomaController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\PalabraController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -252,9 +254,15 @@
     <Content Include="Views\Pais\Crear.cshtml" />
     <Content Include="Views\Pais\Editar.cshtml" />
     <Content Include="Views\Pais\Eliminar.cshtml" />
+    <Content Include="Views\Idioma\Index.cshtml" />
+    <Content Include="Views\Idioma\Detalle.cshtml" />
+    <Content Include="Views\Idioma\Crear.cshtml" />
+    <Content Include="Views\Idioma\Editar.cshtml" />
+    <Content Include="Views\Idioma\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Palabra\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

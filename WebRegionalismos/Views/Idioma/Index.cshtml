@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebRegionalismos.Models.Idioma>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Crear")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionIdioma)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionIdioma)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.IdIdioma }) |
+            @Html.ActionLink("Detalle", "Detalle", new { id=item.IdIdioma }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.IdIdioma })
+        </td>
+    </tr>
+}
+
+</table>

@@ -4,11 +4,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace WebRegionalismos.Models.Repositorios
+namespace WebRegionalismos.Models
 {
     public class RepositorioPalabra
     {
-        public Palabra BuscarPais(int IdPalabra)
+        public Palabra BuscarPalabra(int IdPalabra)
         {
             using (RegionalismoContexto contexto = new RegionalismoContexto())
             {
@@ -17,7 +17,7 @@ namespace WebRegionalismos.Models.Repositorios
         }
 
 
-        public void AgregarPais(Palabra palabra)
+        public void AgregarPalabra(Palabra palabra)
         {
             using (RegionalismoContexto contexto = new RegionalismoContexto())
             {
@@ -26,7 +26,7 @@ namespace WebRegionalismos.Models.Repositorios
             }
         }
 
-        public void EditarPais(Palabra palabra)
+        public void EditarPalabra(Palabra palabra)
         {
             using (RegionalismoContexto contexto = new RegionalismoContexto())
             {
@@ -35,7 +35,7 @@ namespace WebRegionalismos.Models.Repositorios
             }
         }
 
-        public void EliminarPais(Palabra palabra)
+        public void EliminarPalabra(Palabra palabra)
         {
             using (RegionalismoContexto contexto = new RegionalismoContexto())
             {
@@ -44,7 +44,7 @@ namespace WebRegionalismos.Models.Repositorios
             }
         }
 
-        public List<Palabra> ListarPaises()
+        public List<Palabra> ListarPalabras()
         {
             using (RegionalismoContexto contexto = new RegionalismoContexto())
             {
