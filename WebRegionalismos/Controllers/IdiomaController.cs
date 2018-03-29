@@ -107,5 +107,11 @@ namespace WebRegionalismos.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult MostrarTodosIdiomas()
+        {
+            var idiomas = repositorio.ListarIdiomas();
+            return PartialView("_MostrarTodosIdiomas", idiomas);
+        }
     }
 }

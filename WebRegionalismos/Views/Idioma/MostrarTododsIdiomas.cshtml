@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebRegionalismos.Models.Idioma>
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a data-url="@Url.Content(string.Format("~/Idioma/MostrarTodosIdiomas/{0}", item.IdIdioma))"
+           class="list-group-item">
+            @item.DescripcionIdioma
+        </a>
+    }
+</div>
+
