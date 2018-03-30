@@ -1,13 +1,23 @@
 ﻿@model IEnumerable<WebRegionalismos.Models.Pais>
 
-<div class="list-group">
-    @foreach (var item in Model)
+
+<select id="SelectPais">
+
+    @if (Model != null)
     {
-        <a data-url="@Url.Content(string.Format("~/Paises/MostrarTodosPaises/{0}", item.IdPais))"
-           class="list-group-item">
-            @item.DescripcionPais
-        </a>
+        <option disabled selected>Seleccione provincia</option>
+
+        foreach (var item in Model)
+        {
+            <option value=@item.IdPais>
+                @Html.DisplayFor(modelItem => item.DescripcionPais)
+            </option>
+        }
     }
-</div>
+    else
+    {
+        <option disabled selected>No hay elementos cargados</option>
+    }
+</select>
 
 

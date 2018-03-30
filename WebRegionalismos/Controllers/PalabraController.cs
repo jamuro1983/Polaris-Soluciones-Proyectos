@@ -14,11 +14,20 @@ namespace WebRegionalismos.Controllers
     public class PalabraController : Controller
     {
         private RepositorioPalabra repositorio = new RepositorioPalabra();
+        private RepositorioPais repoPais = new RepositorioPais();
 
         // GET: Palabra
         public ActionResult Index()
         {
             return View(repositorio.ListarPalabras());
         }
+
+        public ActionResult Crear()
+        {
+            return View();
+        }
+
+
+
     }
 }

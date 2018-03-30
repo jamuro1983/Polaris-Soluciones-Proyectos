@@ -109,10 +109,14 @@ namespace WebRegionalismos.Controllers
             return RedirectToAction("Index");
         }
 
+
+
         public ActionResult MostrarTodosPaises()
         {
-            var paises = repositorio.ListarPaises();
-            return PartialView("_MostrarTodosPaises", paises);
+            List<Pais> listaPaises = new List<Pais>();
+            listaPaises = repositorio.ListarPaises();
+
+            return View(listaPaises);
         }
     }
 }
