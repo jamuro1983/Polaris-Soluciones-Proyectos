@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using WebRegionalismos.Models;
 
 namespace WebRegionalismos.Controllers
@@ -109,13 +110,12 @@ namespace WebRegionalismos.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-        public ActionResult MostrarTodosPaises()
+        
+ 
+        public ActionResult MostrarListaPaises()
         {
             List<Pais> listaPaises = new List<Pais>();
             listaPaises = repositorio.ListarPaises();
-
             return View(listaPaises);
         }
     }

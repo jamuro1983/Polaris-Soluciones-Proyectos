@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebRegionalismos.Models.Pais>
+
+
+
+<select id="SelectPais">
+    <option disabled selected>Seleccione provincia</option>
+    @foreach (var item in Model)
+    {
+        <option value=@item.IdPais>@Html.DisplayFor(modelItem => item.DescripcionPais)</option>
+    }
+</select>

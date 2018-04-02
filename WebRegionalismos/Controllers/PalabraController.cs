@@ -15,6 +15,7 @@ namespace WebRegionalismos.Controllers
     {
         private RepositorioPalabra repositorio = new RepositorioPalabra();
         private RepositorioPais repoPais = new RepositorioPais();
+        private RepositorioIdioma repoIdioma = new RepositorioIdioma();
 
         // GET: Palabra
         public ActionResult Index()
@@ -24,6 +25,14 @@ namespace WebRegionalismos.Controllers
 
         public ActionResult Crear()
         {
+            List<Pais> listaPaises = new List<Pais>();
+            listaPaises = repoPais.ListarPaises();
+            ViewBag.ListaPaises = listaPaises;
+
+            List<Idioma> listaIdioma = new List<Idioma>();
+            listaIdioma = repoIdioma.ListarIdiomas();
+            ViewBag.ListaIdioma = listaIdioma;
+
             return View();
         }
 

@@ -1,12 +1,10 @@
 ﻿@model IEnumerable<WebRegionalismos.Models.Idioma>
 
-<div class="list-group">
+
+<select id="SelectIdioma">
+    <option disabled selected>Seleccione Idioma</option>
     @foreach (var item in Model)
     {
-        <a data-url="@Url.Content(string.Format("~/Idioma/MostrarTodosIdiomas/{0}", item.IdIdioma))"
-           class="list-group-item">
-            @item.DescripcionIdioma
-        </a>
+        <option value=@item.IdIdioma>@Html.DisplayFor(modelItem => item.DescripcionIdioma)</option>
     }
-</div>
-
+</select>
