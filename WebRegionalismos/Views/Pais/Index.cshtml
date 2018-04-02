@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<WebRegionalismos.Models.Pais>
 
 @{
-    ViewBag.Title = "Catálogo de Paises";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
 <h2>Catálogo de Paises</h2>
@@ -9,31 +10,67 @@
 <p>
     @Html.ActionLink("Nuevo", "Crear")
 </p>
-<table class="table">
-    <tr>
-        <th> 
-            @Html.DisplayNameFor(model => model.IdPais)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DescripcionPais)
-        </th>
-        <th></th>
-    </tr>
+<table class="cinereousTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelPais)
+            </th>
+            <th>
+                @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelDescripcionPais)
+            </th>
+            <th>
+                @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelOpciones)
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdPais)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionPais)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id = item.IdPais }) |
-            @Html.ActionLink("Detalle", "Detalle", new { id = item.IdPais }) |
-            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdPais })
-        </td>
-    </tr>
-}
-
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionPais)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.IdPais }) |
+                    @Html.ActionLink("Detalle", "Detalle", new { id = item.IdPais }) |
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdPais })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+
+
+<section class="services wrapper">
+    <ul class="clearfix">
+        <li class="animated wow fadeInDown">
+            <img class="icon" src="~/Content/myTemplate/img/icon1.png" alt="" />
+            <span class="separator"></span>
+            <h2>Officia Deserunt Mollit</h2>
+            <p>
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua voluptate velit esse
+                cillum dolore.
+            </p>
+        </li>
+        <li class="animated wow fadeInDown" data-wow-delay=".2s">
+            <img class="icon" src="~/Content/myTemplate/img/icon2.png" alt="" />
+            <span class="separator"></span>
+            <h2>Culpa Killum Dolore</h2>
+            <p>aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </li>
+        <li class="animated wow fadeInDown" data-wow-delay=".4s">
+            <img class="icon" src="~/Content/myTemplate/img/icon3.png" alt="" />
+            <span class="separator"></span>
+            <h2>Elit Tempor Incididunt</h2>
+            <p>nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat enim ad minim veniam.</p>
+        </li>
+    </ul>
+</section><!--  End services  -->
