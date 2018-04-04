@@ -2,25 +2,76 @@
 
 @{
     ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
-<h2>Detalle</h2>
+<h2 class="titulo">
+    Detalle
+</h2>
 
 <div>
     <h4>Pais</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DescripcionPais)
+          
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DescripcionPais)
+           
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.IdPais }) |
-    @Html.ActionLink("Volver", "Index")
-</p>
+
+
+<div class="form-style-3">
+    <form>
+        <fieldset>
+            <legend>Información General</legend>
+
+            <div>
+                @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelPais)
+
+                @Html.DisplayFor(model => model.IdPais)
+            </div>
+
+            <div>
+
+                @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelDescripcionPais)
+
+                @Html.DisplayFor(model => model.DescripcionPais)
+
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+
+
+
+<div>
+    <div>
+        <table class="botonNuevo">
+            <tbody>
+                <tr>
+                    <td>
+                        <button class="botonEditarSombreado" onclick="location.href='@Url.Action("Editar", "Pais", new { id = Model.IdPais })'">
+                            Editar
+                        </button> |
+                    </td>
+                    <td>
+                        <button class="botonVolverSombreado" onclick="location.href='@Url.Action("Index", "Pais")'">
+                            Volver
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@Html.Partial("~/Views/Shared/_PiePagina.cshtml")
+

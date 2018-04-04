@@ -37,7 +37,8 @@ namespace WebRegionalismos.Controllers
         }
 
 
-        public ActionResult Crear()
+        #region Crear       
+    public ActionResult Crear()
         {
             return View();
         }
@@ -54,9 +55,9 @@ namespace WebRegionalismos.Controllers
 
             return View(pais);
         }
+        #endregion
 
-
-
+        #region Editar
         public ActionResult Editar(string id)
         {
             if (id == null)
@@ -83,6 +84,11 @@ namespace WebRegionalismos.Controllers
             }
             return View(pais);
         }
+
+
+        #endregion
+
+
 
 
         public ActionResult Eliminar(string id)

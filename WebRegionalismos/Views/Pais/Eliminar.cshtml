@@ -2,31 +2,86 @@
 
 @{
     ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
-<h2>Eliminar</h2>
+<h2 class="titulo">
+    Eliminar País
+</h2>
 
-<h3>¿Está seguro de que desea eliminar éste registro?</h3>
+<h3>¿Confirma que desea eliminar este registro?</h3>
 <div>
-    <h4>Pais</h4>
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DescripcionPais)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DescripcionPais)
-        </dd>
+    <div class="form-style-3">
+        <form>
+            <fieldset>
+                <legend>Información General</legend>
 
-    </dl>
+                <div>
+                    @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelPais)
 
-    @using (Html.BeginForm()) {
+                    @Html.DisplayFor(model => model.IdPais)
+                </div>
+
+                <div>
+
+                    @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelDescripcionPais)
+
+                    @Html.DisplayFor(model => model.DescripcionPais)
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.DescripcionPais)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DescripcionPais)
+            </dd>
+
+        </dl>*@
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-default" /> |
-            @Html.ActionLink("Volver", "Index")
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+
+            </div>*@
+
+        <div>
+            <div>
+                <table class="botonNuevo">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button type="submit" value="Eliminar" class="botonGuardarSombreado">
+                                    Eliminar
+                                </button>
+                            </td>
+                            <td>
+                                <button class="botonVolverSombreado" onclick="location.href='@Url.Action("Index", "Pais")'">
+                                    Volver
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+
+
+
     }
+
 </div>
+
+@Html.Partial("~/Views/Shared/_PiePagina.cshtml")

@@ -83,8 +83,18 @@
         border-collapse:collapse;
         border-spacing:0;
     }*/
+table.botonNuevo {
+    font-family: Tahoma, Geneva, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.botonNuevo tbody td {
+        color: #000000;
+}
 
 table.cinereousTable {
+    font-family: Tahoma, Geneva, sans-serif;
     border: 6px solid #948473;
     background-color: #FFE3C6;
     width: 80%;
@@ -100,6 +110,11 @@ table.cinereousTable {
 
     table.cinereousTable tbody td {
         font-size: 13px;
+        color: #000000;
+    }
+
+    table.cinereousTable tr:nth-child(even) {
+        background: #D9C2A7;
     }
 
     table.cinereousTable thead {

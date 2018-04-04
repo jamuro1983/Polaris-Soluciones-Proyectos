@@ -107,7 +107,7 @@ h5, h6          { font-weight: bolder }
 /*    Billboard    */
 .billboard{
     width: 100%;
-    height: 690px;
+    height: 480px;
     position: relative;
 }
 
@@ -142,10 +142,11 @@ h5, h6          { font-weight: bolder }
     background: url('../img/shadow.png') repeat-x;
 }
 
-.billboard .caption{
-    margin-top: 130px;
-    text-align: center;
-}
+    .billboard .caption {
+        /*margin-top: 130px;*/
+        margin-top: 0px;
+        text-align: center;
+    }
 
 .billboard .caption.light{
     color: #fff;
@@ -209,7 +210,7 @@ h5, h6          { font-weight: bolder }
 /*    header    */
 header{
     width: 100%;
-    height: 125px;
+    height: 90px;
 }
 
 header .logo{
