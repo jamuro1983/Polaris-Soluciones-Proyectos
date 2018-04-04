@@ -2,25 +2,58 @@
 
 @{
     ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
-<h2>Detalle</h2>
+<h2 class="titulo">
+    Detalle
+</h2>
+
+
+<div class="form-style-3">
+    <form>
+        <fieldset>
+            <legend>Información General</legend>
+
+            <div>
+                @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelIdioma)
+
+                @Html.DisplayFor(model => model.IdIdioma)
+            </div>
+
+            <div>
+
+                @Html.DisplayName(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelNombreIdioma)
+
+                @Html.DisplayFor(model => model.DescripcionIdioma)
+
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
 
 <div>
-    <h4>Idioma</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DescripcionIdioma)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DescripcionIdioma)
-        </dd>
-
-    </dl>
+    <div>
+        <table class="botonNuevo">
+            <tbody>
+                <tr>
+                    <td>
+                        <button class="botonEditarSombreado" onclick="location.href='@Url.Action("Editar", "Idioma", new { id = Model.IdIdioma })'">
+                            Editar
+                        </button>
+                    </td>
+                    <td>
+                        <button class="botonVolverSombreado" onclick="location.href='@Url.Action("Index", "Idioma")'">
+                            Volver
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.IdIdioma }) |
-    @Html.ActionLink("Volver", "Index")
-</p>
+
+
+@Html.Partial("~/Views/Shared/_PiePagina.cshtml")

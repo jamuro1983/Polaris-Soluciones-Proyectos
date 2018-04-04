@@ -19,7 +19,10 @@ namespace WebRegionalismos.Clases_Compartidas
             public const string labelDescripcionPais = "Descripción de País";
         #endregion
 
-
+        #region Catalogo de Idiomas     
+            public const string labelIdioma = "Identificador";
+            public const string labelNombreIdioma = "Nombre";
+        #endregion
 
     }
 

@@ -349,11 +349,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Idioma\Index.cshtml" />
-    <Content Include="Views\Idioma\Detalle.cshtml" />
-    <Content Include="Views\Idioma\Crear.cshtml" />
-    <Content Include="Views\Idioma\Editar.cshtml" />
-    <Content Include="Views\Idioma\Eliminar.cshtml" />
     <Content Include="Views\Palabra\Index.cshtml" />
     <Content Include="Views\Idioma\MostrarTododsIdiomas.cshtml" />
     <Content Include="Views\Palabra\Crear.cshtml" />
@@ -375,6 +370,11 @@
     <Content Include="Views\Pais\Editar.cshtml" />
     <Content Include="Views\Pais\Detalle.cshtml" />
     <Content Include="Views\Pais\Eliminar.cshtml" />
+    <Content Include="Views\Idioma\Index.cshtml" />
+    <Content Include="Views\Idioma\Detalle.cshtml" />
+    <Content Include="Views\Idioma\Crear.cshtml" />
+    <Content Include="Views\Idioma\Editar.cshtml" />
+    <Content Include="Views\Idioma\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

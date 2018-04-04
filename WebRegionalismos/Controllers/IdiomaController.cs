@@ -34,7 +34,9 @@ namespace WebRegionalismos.Controllers
             return View(idioma);
         }
 
+        #region Crear Idioma
 
+       
         public ActionResult Crear()
         {
             return View();
@@ -52,8 +54,9 @@ namespace WebRegionalismos.Controllers
 
             return View(idioma);
         }
+        #endregion
 
-
+        #region Editar Idioma
 
         public ActionResult Editar(Int64 id)
         {
@@ -81,7 +84,7 @@ namespace WebRegionalismos.Controllers
             }
             return View(idioma);
         }
-
+        #endregion
 
         public ActionResult Eliminar(Int64 id)
         {
