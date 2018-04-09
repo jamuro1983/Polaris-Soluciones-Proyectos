@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace WebRegionalismos.Models
 {
@@ -12,7 +13,8 @@ namespace WebRegionalismos.Models
         {
             using (RegionalismoContexto contexto = new RegionalismoContexto())
             {
-                return contexto.Definicion.ToList();
+            
+                return contexto.Definicion.Include("Palabra").Include("Idioma").Include("Pais").ToList();
             }
         }
 
@@ -26,19 +28,5 @@ namespace WebRegionalismos.Models
             }
         }
 
-
-        //public void AgregarPalabra(Palabra palabra, Pais pais, Definicion definicion, Idioma idioma)
-        //{
-        //    using (RegionalismoContexto contexto = new RegionalismoContexto())
-        //    {
-        //        contexto.Palabra.Add(palabra);
-
-        //        PalabraPorPais palabraPorPais = new PalabraPorPais();
-
-        //        contexto.SaveChanges();
-
-
-        //    }
-        //}
     }
 }

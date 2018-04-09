@@ -64,37 +64,7 @@ namespace WebRegionalismos.Controllers
                 return Json(false);
             }
 
-           
-
-            //try
-         //   //{
-             //  if (!ModelState.IsValid)
-           //     return Json(false);
-            //     repositorio.AgregarPalabraDefinicion(definicion);
-            //    return Json(true);
-            //}
-            //catch
-            //{
-               // return Json(false);
-           // }
-        }
-            //[ValidateAntiForgeryToken]
-            //public ActionResult Crear([Bind(Include = "IdIdioma,IdPais,DescripcionPalabra,Definicion1")] Definicion definicion)
-            //{
-
-            //    if (ModelState.IsValid)
-            //    {
-            //        repositorio.AgregarPalabraDefinicion(definicion);
-            //        return RedirectToAction("Index");
-            //    }
-
-            //    return View(definicion);
-            //}
-
-
-
-
-
+          
 
             //// GET: Definicion/Create
             //public ActionResult Create()
