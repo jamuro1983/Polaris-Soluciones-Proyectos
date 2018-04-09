@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Clases Compartidas\VariablesGlobales.cs" />
+    <Compile Include="Controllers\DefinicionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdiomaController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
@@ -168,9 +169,6 @@
     <Compile Include="Models\Palabra.cs">
       <DependentUpon>RegionalismosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PalabraPorPais.cs">
-      <DependentUpon>RegionalismosModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\RegionalismosModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -188,11 +186,8 @@
     </Compile>
     <Compile Include="Models\Repositorios\RepositorioIdioma.cs" />
     <Compile Include="Models\Repositorios\RepositorioPais.cs" />
-    <Compile Include="Models\Repositorios\RepositorioPalabra.cs" />
+    <Compile Include="Models\Repositorios\RepositorioPalabraDefinicion.cs" />
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>RegionalismosModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vwCatalogoPalabras.cs">
       <DependentUpon>RegionalismosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -324,6 +319,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Paises\MostrarListaPaises.js" />
+    <Content Include="Scripts\PalabrasDefinicion\CrearPalabraDefinicion.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -349,7 +346,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Palabra\Index.cshtml" />
     <Content Include="Views\Idioma\MostrarTododsIdiomas.cshtml" />
     <Content Include="Views\Palabra\Crear.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -375,6 +371,8 @@
     <Content Include="Views\Idioma\Crear.cshtml" />
     <Content Include="Views\Idioma\Editar.cshtml" />
     <Content Include="Views\Idioma\Eliminar.cshtml" />
+    <Content Include="Views\Definicion\Index.cshtml" />
+    <Content Include="Views\Definicion\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

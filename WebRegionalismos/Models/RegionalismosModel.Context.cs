@@ -29,8 +29,6 @@ namespace WebRegionalismos.Models
         public virtual DbSet<Idioma> Idioma { get; set; }
         public virtual DbSet<Pais> Pais { get; set; }
         public virtual DbSet<Palabra> Palabra { get; set; }
-        public virtual DbSet<PalabraPorPais> PalabraPorPais { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<vwCatalogoPalabras> vwCatalogoPalabras { get; set; }
     }
 }

@@ -38,19 +38,17 @@
             <a href="#"><img class="logo" src="~/Content/myTemplate/img/logo_dark.png" alt="" /></a>
             <nav>
                 <ul>
-
+                    <li>@Html.ActionLink("Principal", "Index", "Home")</li>
                     <li>@Html.ActionLink("País", "Index", "Pais")</li>
                     <li>@Html.ActionLink("Idioma", "Index", "Idioma")</li>
-                    <li>@Html.ActionLink("Palabras", "Index", "Palabra")</li>
-                    <li>@Html.ActionLink("Principal", "Index", "Home")</li>
-
+                    <li>@Html.ActionLink("Palabras", "Index", "Definicion")</li>
                 </ul>
             </nav>
         </header>
 
         <div class="caption dark animated wow fadeInDown clearfix">
-            <h1>@WebRegionalismos.Clases_Compartidas.VariablesGlobales.nombreSistema</h1>
-            <p>@WebRegionalismos.Clases_Compartidas.VariablesGlobales.descripcionSistema</p>
+            <h1>@WebRegionalismos.Clases_Compartidas.VariablesGlobales.lblNombreSistema</h1>
+            <p>@WebRegionalismos.Clases_Compartidas.VariablesGlobales.lblDescripcionSistema</p>
             <hr>
         </div>
         <div class="shadow"></div>

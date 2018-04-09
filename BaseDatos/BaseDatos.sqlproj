@@ -69,10 +69,8 @@
     <Build Include="dbo\Tables\Idioma.sql" />
     <Build Include="dbo\Tables\Pais.sql" />
     <Build Include="dbo\Tables\Palabra.sql" />
-    <Build Include="dbo\Tables\PalabraPorPais.sql" />
     <Build Include="Security\region.sql" />
     <Build Include="Security\region_1.sql" />
     <Build Include="Security\RoleMemberships.sql" />
-    <Build Include="dbo\Views\vwCatalogoPalabras.sql" />
   </ItemGroup>
 </Project>

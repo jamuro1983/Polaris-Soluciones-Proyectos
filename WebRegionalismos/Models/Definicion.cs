@@ -18,8 +18,10 @@ namespace WebRegionalismos.Models
         public int IdPalabra { get; set; }
         public int IdIdioma { get; set; }
         public string Definicion1 { get; set; }
+        public string IdPais { get; set; }
     
         public virtual Idioma Idioma { get; set; }
         public virtual Palabra Palabra { get; set; }
+        public virtual Pais Pais { get; set; }
     }
 }

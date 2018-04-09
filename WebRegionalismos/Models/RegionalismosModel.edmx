@@ -12,6 +12,7 @@
           <Property Name="IdDefinicion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPalabra" Type="int" Nullable="false" />
           <Property Name="IdIdioma" Type="int" Nullable="false" />
+          <Property Name="IdPais" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="Definicion" Type="varchar" MaxLength="400" Nullable="false" />
         </EntityType>
         <EntityType Name="Idioma">
@@ -35,14 +36,6 @@
           <Property Name="IdPalabra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DescripcionPalabra" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="PalabraPorPais">
-          <Key>
-            <PropertyRef Name="IdPalabraPorPais" />
-          </Key>
-          <Property Name="IdPalabraPorPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdPais" Type="char" MaxLength="3" Nullable="false" />
-          <Property Name="IdPalabra" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -53,28 +46,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="vwCatalogoPalabras">
-          <Key>
-            <PropertyRef Name="DescripcionPalabra" />
-            <PropertyRef Name="DescripcionPais" />
-            <PropertyRef Name="DescripcionIdioma" />
-            <PropertyRef Name="Definicion" />
-            <PropertyRef Name="IdPalabra" />
-            <PropertyRef Name="IdIdioma" />
-            <PropertyRef Name="IdPais" />
-            <PropertyRef Name="IdDefinicion" />
-          </Key>
-          <Property Name="DescripcionPalabra" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DescripcionPais" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DescripcionIdioma" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Definicion" Type="varchar" MaxLength="400" Nullable="false" />
-          <Property Name="IdPalabra" Type="int" Nullable="false" />
-          <Property Name="IdIdioma" Type="int" Nullable="false" />
-          <Property Name="IdPais" Type="char" MaxLength="3" Nullable="false" />
-          <Property Name="IdDefinicion" Type="int" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Definicion_Idioma_IdIdioma">
           <End Role="Idioma" Type="Self.Idioma" Multiplicity="1" />
           <End Role="Definicion" Type="Self.Definicion" Multiplicity="*" />
@@ -84,6 +55,18 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
             </Principal>
             <Dependent Role="Definicion">
               <PropertyRef Name="IdIdioma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Definicion_Pais_IdPais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
+          <End Role="Definicion" Type="Self.Definicion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Definicion">
+              <PropertyRef Name="IdPais" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -99,64 +82,23 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PalabraPorPais_Pais_IdPais">
-          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
-          <End Role="PalabraPorPais" Type="Self.PalabraPorPais" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pais">
-              <PropertyRef Name="IdPais" />
-            </Principal>
-            <Dependent Role="PalabraPorPais">
-              <PropertyRef Name="IdPais" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PalabraPorPais_Palabra_IdPalabra">
-          <End Role="Palabra" Type="Self.Palabra" Multiplicity="1" />
-          <End Role="PalabraPorPais" Type="Self.PalabraPorPais" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Palabra">
-              <PropertyRef Name="IdPalabra" />
-            </Principal>
-            <Dependent Role="PalabraPorPais">
-              <PropertyRef Name="IdPalabra" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="dbRegionalismosModelStoreContainer">
           <EntitySet Name="Definicion" EntityType="Self.Definicion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Idioma" EntityType="Self.Idioma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Palabra" EntityType="Self.Palabra" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PalabraPorPais" EntityType="Self.PalabraPorPais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="vwCatalogoPalabras" EntityType="Self.vwCatalogoPalabras" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [vwCatalogoPalabras].[DescripcionPalabra] AS [DescripcionPalabra], 
-    [vwCatalogoPalabras].[DescripcionPais] AS [DescripcionPais], 
-    [vwCatalogoPalabras].[DescripcionIdioma] AS [DescripcionIdioma], 
-    [vwCatalogoPalabras].[Definicion] AS [Definicion], 
-    [vwCatalogoPalabras].[IdPalabra] AS [IdPalabra], 
-    [vwCatalogoPalabras].[IdIdioma] AS [IdIdioma], 
-    [vwCatalogoPalabras].[IdPais] AS [IdPais], 
-    [vwCatalogoPalabras].[IdDefinicion] AS [IdDefinicion]
-    FROM [dbo].[vwCatalogoPalabras] AS [vwCatalogoPalabras]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Definicion_Idioma_IdIdioma" Association="Self.FK_Definicion_Idioma_IdIdioma">
             <End Role="Idioma" EntitySet="Idioma" />
+            <End Role="Definicion" EntitySet="Definicion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Definicion_Pais_IdPais" Association="Self.FK_Definicion_Pais_IdPais">
+            <End Role="Pais" EntitySet="Pais" />
             <End Role="Definicion" EntitySet="Definicion" />
           </AssociationSet>
           <AssociationSet Name="FK_Definicion_Palabra_IdPalabra" Association="Self.FK_Definicion_Palabra_IdPalabra">
             <End Role="Palabra" EntitySet="Palabra" />
             <End Role="Definicion" EntitySet="Definicion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PalabraPorPais_Pais_IdPais" Association="Self.FK_PalabraPorPais_Pais_IdPais">
-            <End Role="Pais" EntitySet="Pais" />
-            <End Role="PalabraPorPais" EntitySet="PalabraPorPais" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PalabraPorPais_Palabra_IdPalabra" Association="Self.FK_PalabraPorPais_Palabra_IdPalabra">
-            <End Role="Palabra" EntitySet="Palabra" />
-            <End Role="PalabraPorPais" EntitySet="PalabraPorPais" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -173,6 +115,8 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
           <Property Name="Definicion1" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Idioma" Relationship="Self.FK_Definicion_Idioma_IdIdioma" FromRole="Definicion" ToRole="Idioma" />
           <NavigationProperty Name="Palabra" Relationship="Self.FK_Definicion_Palabra_IdPalabra" FromRole="Definicion" ToRole="Palabra" />
+          <Property Name="IdPais" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Pais" Relationship="dbRegionalismosModel.FK_Definicion_Pais_IdPais" FromRole="Definicion" ToRole="Pais" />
         </EntityType>
         <EntityType Name="Idioma">
           <Key>
@@ -188,7 +132,7 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
           </Key>
           <Property Name="IdPais" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DescripcionPais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PalabraPorPais" Relationship="Self.FK_PalabraPorPais_Pais_IdPais" FromRole="Pais" ToRole="PalabraPorPais" />
+          <NavigationProperty Name="Definicion" Relationship="dbRegionalismosModel.FK_Definicion_Pais_IdPais" FromRole="Pais" ToRole="Definicion" />
         </EntityType>
         <EntityType Name="Palabra">
           <Key>
@@ -197,17 +141,6 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
           <Property Name="IdPalabra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DescripcionPalabra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Definicion" Relationship="Self.FK_Definicion_Palabra_IdPalabra" FromRole="Palabra" ToRole="Definicion" />
-          <NavigationProperty Name="PalabraPorPais" Relationship="Self.FK_PalabraPorPais_Palabra_IdPalabra" FromRole="Palabra" ToRole="PalabraPorPais" />
-        </EntityType>
-        <EntityType Name="PalabraPorPais">
-          <Key>
-            <PropertyRef Name="IdPalabraPorPais" />
-          </Key>
-          <Property Name="IdPalabraPorPais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdPais" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="IdPalabra" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pais" Relationship="Self.FK_PalabraPorPais_Pais_IdPais" FromRole="PalabraPorPais" ToRole="Pais" />
-          <NavigationProperty Name="Palabra" Relationship="Self.FK_PalabraPorPais_Palabra_IdPalabra" FromRole="PalabraPorPais" ToRole="Palabra" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -243,36 +176,11 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PalabraPorPais_Pais_IdPais">
-          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
-          <End Role="PalabraPorPais" Type="Self.PalabraPorPais" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pais">
-              <PropertyRef Name="IdPais" />
-            </Principal>
-            <Dependent Role="PalabraPorPais">
-              <PropertyRef Name="IdPais" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PalabraPorPais_Palabra_IdPalabra">
-          <End Role="Palabra" Type="Self.Palabra" Multiplicity="1" />
-          <End Role="PalabraPorPais" Type="Self.PalabraPorPais" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Palabra">
-              <PropertyRef Name="IdPalabra" />
-            </Principal>
-            <Dependent Role="PalabraPorPais">
-              <PropertyRef Name="IdPalabra" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="RegionalismoContexto" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Definicion" EntityType="Self.Definicion" />
           <EntitySet Name="Idioma" EntityType="Self.Idioma" />
           <EntitySet Name="Pais" EntityType="Self.Pais" />
           <EntitySet Name="Palabra" EntityType="Self.Palabra" />
-          <EntitySet Name="PalabraPorPais" EntityType="Self.PalabraPorPais" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_Definicion_Idioma_IdIdioma" Association="Self.FK_Definicion_Idioma_IdIdioma">
             <End Role="Idioma" EntitySet="Idioma" />
@@ -282,36 +190,23 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
             <End Role="Palabra" EntitySet="Palabra" />
             <End Role="Definicion" EntitySet="Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK_PalabraPorPais_Pais_IdPais" Association="Self.FK_PalabraPorPais_Pais_IdPais">
+          <AssociationSet Name="FK_Definicion_Pais_IdPais" Association="dbRegionalismosModel.FK_Definicion_Pais_IdPais">
             <End Role="Pais" EntitySet="Pais" />
-            <End Role="PalabraPorPais" EntitySet="PalabraPorPais" />
+            <End Role="Definicion" EntitySet="Definicion" />
           </AssociationSet>
-          <AssociationSet Name="FK_PalabraPorPais_Palabra_IdPalabra" Association="Self.FK_PalabraPorPais_Palabra_IdPalabra">
-            <End Role="Palabra" EntitySet="Palabra" />
-            <End Role="PalabraPorPais" EntitySet="PalabraPorPais" />
-          </AssociationSet>
-          <EntitySet Name="vwCatalogoPalabras" EntityType="dbRegionalismosModel.vwCatalogoPalabras" />
         </EntityContainer>
-        <EntityType Name="vwCatalogoPalabras">
-          <Key>
-            <PropertyRef Name="DescripcionPalabra" />
-            <PropertyRef Name="DescripcionPais" />
-            <PropertyRef Name="DescripcionIdioma" />
-            <PropertyRef Name="Definicion" />
-            <PropertyRef Name="IdPalabra" />
-            <PropertyRef Name="IdIdioma" />
-            <PropertyRef Name="IdPais" />
-            <PropertyRef Name="IdDefinicion" />
-          </Key>
-          <Property Name="DescripcionPalabra" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DescripcionPais" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DescripcionIdioma" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Definicion" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
-          <Property Name="IdPalabra" Type="Int32" Nullable="false" />
-          <Property Name="IdIdioma" Type="Int32" Nullable="false" />
-          <Property Name="IdPais" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="IdDefinicion" Type="Int32" Nullable="false" />
-        </EntityType>
+        <Association Name="FK_Definicion_Pais_IdPais">
+          <End Type="dbRegionalismosModel.Pais" Role="Pais" Multiplicity="1" />
+          <End Type="dbRegionalismosModel.Definicion" Role="Definicion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Definicion">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -321,6 +216,7 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
           <EntitySetMapping Name="Definicion">
             <EntityTypeMapping TypeName="dbRegionalismosModel.Definicion">
               <MappingFragment StoreEntitySet="Definicion">
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
                 <ScalarProperty Name="IdDefinicion" ColumnName="IdDefinicion" />
                 <ScalarProperty Name="IdPalabra" ColumnName="IdPalabra" />
                 <ScalarProperty Name="IdIdioma" ColumnName="IdIdioma" />
@@ -352,15 +248,6 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PalabraPorPais">
-            <EntityTypeMapping TypeName="dbRegionalismosModel.PalabraPorPais">
-              <MappingFragment StoreEntitySet="PalabraPorPais">
-                <ScalarProperty Name="IdPalabraPorPais" ColumnName="IdPalabraPorPais" />
-                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
-                <ScalarProperty Name="IdPalabra" ColumnName="IdPalabra" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="dbRegionalismosModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -369,20 +256,6 @@ advertencia 6002: La tabla o vista 'dbRegionalismos.dbo.vwCatalogoPalabras' no t
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwCatalogoPalabras">
-            <EntityTypeMapping TypeName="dbRegionalismosModel.vwCatalogoPalabras">
-              <MappingFragment StoreEntitySet="vwCatalogoPalabras">
-                <ScalarProperty Name="IdDefinicion" ColumnName="IdDefinicion" />
-                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
-                <ScalarProperty Name="IdIdioma" ColumnName="IdIdioma" />
-                <ScalarProperty Name="IdPalabra" ColumnName="IdPalabra" />
-                <ScalarProperty Name="Definicion" ColumnName="Definicion" />
-                <ScalarProperty Name="DescripcionIdioma" ColumnName="DescripcionIdioma" />
-                <ScalarProperty Name="DescripcionPais" ColumnName="DescripcionPais" />
-                <ScalarProperty Name="DescripcionPalabra" ColumnName="DescripcionPalabra" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

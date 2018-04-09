@@ -3,9 +3,14 @@
 
 
 <select id="SelectPais">
-    <option disabled selected>Seleccione provincia</option>
+    <option disabled selected>Seleccione País</option>
     @foreach (var item in Model)
     {
-        <option value=@item.IdPais>@Html.DisplayFor(modelItem => item.DescripcionPais)</option>
+        <option value=@item.IdPais>
+            @Html.DisplayFor(modelItem => item.DescripcionPais)
+        </option>
     }
 </select>
+
+
+

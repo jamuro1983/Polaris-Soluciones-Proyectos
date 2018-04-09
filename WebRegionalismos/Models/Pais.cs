@@ -17,13 +17,13 @@ namespace WebRegionalismos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pais()
         {
-            this.PalabraPorPais = new HashSet<PalabraPorPais>();
+            this.Definicion = new HashSet<Definicion>();
         }
     
         public string IdPais { get; set; }
         public string DescripcionPais { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PalabraPorPais> PalabraPorPais { get; set; }
+        public virtual ICollection<Definicion> Definicion { get; set; }
     }
 }

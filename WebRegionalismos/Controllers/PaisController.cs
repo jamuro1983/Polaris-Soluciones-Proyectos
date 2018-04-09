@@ -38,13 +38,13 @@ namespace WebRegionalismos.Controllers
 
 
         #region Crear       
-    public ActionResult Crear()
+        public ActionResult Crear()
         {
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Crear([Bind(Include = "IdPais,DescripcionPais")] Pais pais)
         {
             if (ModelState.IsValid)
@@ -88,8 +88,7 @@ namespace WebRegionalismos.Controllers
 
         #endregion
 
-
-
+        #region Eliminar
 
         public ActionResult Eliminar(string id)
         {
@@ -115,7 +114,7 @@ namespace WebRegionalismos.Controllers
 
             return RedirectToAction("Index");
         }
-
+        #endregion
         
  
         public ActionResult MostrarListaPaises()

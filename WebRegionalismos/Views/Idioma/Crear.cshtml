@@ -20,45 +20,51 @@
             <fieldset>
                 <legend>Complete la información según corresponda</legend>
 
-                <div>
-                    @Html.Label(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelIdioma, htmlAttributes: new { @class = "required" })
+                @*<div>
+                        @Html.Label(WebRegionalismos.Clases_Compartidas.VariablesGlobales.lblIdioma, htmlAttributes: new { @class = "required" })
 
-                    @Html.EditorFor(model => model.IdIdioma, new { htmlAttributes = new { @class = "input-field" } })
-                </div>
+                        @Html.EditorFor(model => model.IdIdioma, new { htmlAttributes = new { @class = "input-field" } })
+                    </div>*@
 
                 <div>
-                    @Html.Label(WebRegionalismos.Clases_Compartidas.VariablesGlobales.labelNombreIdioma, htmlAttributes: new { @class = "required" })
+                    @Html.Label(WebRegionalismos.Clases_Compartidas.VariablesGlobales.lblNombreIdioma, htmlAttributes: new { @class = "required" })
 
                     @Html.EditorFor(model => model.DescripcionIdioma, new { htmlAttributes = new { @class = "input-field" } })
                 </div>
             </fieldset>
+
+            <div>
+                <div>
+                    <table class="botonNuevo">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <button type="submit" value="Crear" class="botonGuardarSombreado">
+                                        Guardar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
         </form>
     </div>
-
 }
 
-
-
-<div>
-    <div>
-        <table class="botonNuevo">
-            <tbody>
-                <tr>
-                    <td>
-                        <button type="submit" value="Crear" class="botonGuardarSombreado">
-                            Guardar
-                        </button>
-                    </td>
-                    <td>
-                        <button class="botonVolverSombreado" onclick="location.href='@Url.Action("Index", "Idioma")'">
-                            Volver
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<table class="botonNuevo">
+    <tbody>
+        <tr>
+            <td>
+                <button class="botonVolverSombreado" onclick="location.href='@Url.Action("Index", "Idioma")'">
+                    Volver
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 
 @Html.Partial("~/Views/Shared/_PiePagina.cshtml")

@@ -18,7 +18,6 @@ namespace WebRegionalismos.Models
         public Palabra()
         {
             this.Definicion = new HashSet<Definicion>();
-            this.PalabraPorPais = new HashSet<PalabraPorPais>();
         }
     
         public int IdPalabra { get; set; }
@@ -26,7 +25,5 @@ namespace WebRegionalismos.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Definicion> Definicion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PalabraPorPais> PalabraPorPais { get; set; }
     }
 }
